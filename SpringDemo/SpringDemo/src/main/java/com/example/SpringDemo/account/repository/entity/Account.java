@@ -1,5 +1,7 @@
 package com.example.SpringDemo.account.repository.entity;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +17,16 @@ public class Account {
     private String mobileNo;
     private String name;
     private String accountType;
+
+
+    @Autowired
+    public Account() {
+    }
+
+    @Autowired
+    public Account(String accountId) {
+        this.accountId = accountId;
+    }
 
     public int getId() {
         return id;

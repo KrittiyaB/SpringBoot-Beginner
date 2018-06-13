@@ -1,5 +1,6 @@
 package com.example.SpringDemo.account.repository.entity;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,9 @@ public class AccountRepositoryTest {
 
     @Autowired
     private AccountRepository accountRepository;
+
     /*1 test case = 1 transaction*/
+//    @Ignore
     @Test
     public void createAccountIntoDatabase() {
         //Arrange
@@ -31,6 +34,7 @@ public class AccountRepositoryTest {
         assertEquals("01", actualAccount.getAccountId());
     }
 
+//    @Ignore
     @Test
     public void createAccountIntoDatabase2() {
 
