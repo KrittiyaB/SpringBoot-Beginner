@@ -19,15 +19,15 @@ import static org.junit.Assert.assertEquals;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT) //integration test//
 public class AccountControllerTest {
 
-    @Autowired
+    @Autowired //load 1 ครั้ง ช้า ครั้งสองจะอยู่ใน cache
     public TestRestTemplate restTemplate;
 
     @Autowired
-    public AccountRepository accountRepository;
+    public AccountRepository accountRepository; // load all context ข้อดีมั่นใจว่าโหลดได้
 
     @Before
     public void initialDataForTest() {
-        accountRepository.save(new Account("T01"));
+        accountRepository.save(new Account("T01")); //save to H2
         accountRepository.save(new Account("T02"));
     }
 

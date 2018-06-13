@@ -14,7 +14,12 @@ jpa:
     ddl-auto: none
   properties:
     hibernate:
+      format_sql: true
       dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
 
 server:
   port: 8080
@@ -24,4 +29,5 @@ info:
 management:
   security:
     enabled: false
+  endpoints.web.exposure.include: metrics,httptrace,prometheus
 

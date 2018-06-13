@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,16 +17,23 @@ public class AccountController {
     @Autowired
     private AccountRepository accountRepository;
 
+    public void setAccountRepository(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
+
     @GetMapping("/account/{mobileNo}")
     public List<AccountResponse> getAccounts(@PathVariable String mobileNo) {
         Iterable<Account> accounts = accountRepository.findAll();
+        if (accounts == null) {
+            accounts = new ArrayList<>();
+        }
 
         //Convert from Account to AccountResponse
         List<AccountResponse> foundAccountResponse = new ArrayList<>();
 
         for (Account account : accounts) {
             foundAccountResponse.add(
-                    new AccountResponse(account.getAccountId(), account.getMobileNo(), "", ""));
+                    new AccountResponse(account.getAccountId(), account.getMobileNo(), account.getAccountType(), account.getMobileNo()));
         }
         return foundAccountResponse;
     }
